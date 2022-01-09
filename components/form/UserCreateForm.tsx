@@ -41,6 +41,17 @@ const UserCreateForm = () => {
           Please enter a valid email
         </div>
       </div>
+      <div className="flex flex-col my-8 h-12 w-80 p-1">
+        <input
+          type="password"
+          placeholder="Password"
+          {...register('password', { required: true, minLength: 8 })}
+          className="px-1 py-2 rounded-lg"
+        />
+        <div hidden={!errors.password} className="text-sm px-1 text-slate-600">
+          Password must be atleast 8 characters long
+        </div>
+      </div>
       <button
         type="submit"
         className="border-2 rounded-lg w-full mt-4 px-4 py-2 border-black hover:bg-black hover:text-white"
