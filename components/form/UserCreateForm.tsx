@@ -84,6 +84,35 @@ const UserCreateForm = () => {
           Choose an occupation
         </div>
       </div>
+      <div className="flex flex-col  h-12 my-8">
+        <select
+          className="px-2 py-2 rounded-lg hover:cursor-pointer"
+          {...register('state', {
+            required: true,
+            validate: (value) => value !== 'default',
+          })}
+        >
+          <option value="default" aria-disabled aria-hidden>
+            State of Residence
+          </option>
+          {data ? (
+            data.states.map((state) => (
+              <option value={state.name} key={state.name}>
+                {state.name}
+              </option>
+            ))
+          ) : (
+            //Fallback (same idea as the occupation fallback)
+            <option value={'Alabama'}>Alabama</option>
+          )}
+        </select>
+        <div
+          hidden={!errors.state}
+          className="text-sm my-1 px-2 text-slate-600"
+        >
+          Choose a state
+        </div>
+      </div>
       <button
         type="submit"
         className="border-2 rounded-lg w-full mt-4 px-4 py-2 border-black hover:bg-black hover:text-white"
