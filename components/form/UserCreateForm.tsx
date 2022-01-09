@@ -30,6 +30,17 @@ const UserCreateForm = () => {
           Please enter your full name
         </div>
       </div>
+      <div className="flex flex-col my-8 h-12 p-1">
+        <input
+          type="email"
+          placeholder="Email"
+          className="px-1 py-2 rounded-lg"
+          {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
+        />
+        <div hidden={!errors.email} className="text-sm  px-1 text-slate-600">
+          Please enter a valid email
+        </div>
+      </div>
       <button
         type="submit"
         className="border-2 rounded-lg w-full mt-4 px-4 py-2 border-black hover:bg-black hover:text-white"
