@@ -52,6 +52,38 @@ const UserCreateForm = () => {
           Password must be atleast 8 characters long
         </div>
       </div>
+      <div className="flex flex-col my-8 h-12">
+        <select
+          className="px-2 py-2 rounded-lg  hover:cursor-pointer "
+          placeholder="Occupation"
+          {...register('occupation', {
+            required: true,
+            validate: (value) => value !== 'default',
+          })}
+        >
+          <option value={'default'} aria-disabled aria-hidden>
+            Occupation
+          </option>
+          {data ? (
+            data.occupations.map((occupation) => (
+              <option value={occupation} key={occupation}>
+                {occupation}
+              </option>
+            ))
+          ) : (
+            // Set the default option to the first Occupation in list as a fallback
+            // in the case of slow connection. Ideally I would have implemented a lib of fallback
+            // options, but for the sake of this exercise I left it as such
+            <option value={'Head of Shrubbery'}>Head of Shrubbery</option>
+          )}
+        </select>
+        <div
+          hidden={!errors.occupation}
+          className="text-sm  px-2 my-1 text-slate-600"
+        >
+          Choose an occupation
+        </div>
+      </div>
       <button
         type="submit"
         className="border-2 rounded-lg w-full mt-4 px-4 py-2 border-black hover:bg-black hover:text-white"
