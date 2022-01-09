@@ -1,5 +1,7 @@
+import Router from 'next/router'
 import { useForm } from 'react-hook-form'
 import { useGetForm } from './hooks/useGetForm'
+import { postForm } from './util'
 
 const UserCreateForm = () => {
   const { data } = useGetForm()
@@ -10,7 +12,12 @@ const UserCreateForm = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (submittedFormData) => {}
+  const onSubmit = (submittedFormData) => {
+    const success = postForm(submittedFormData)
+    if (success) {
+      Router.push('/newuser')
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
