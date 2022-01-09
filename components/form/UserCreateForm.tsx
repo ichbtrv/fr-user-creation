@@ -1,3 +1,4 @@
+import SubmitButton from 'components/buttons/SubmitButton'
 import Router from 'next/router'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -143,12 +144,7 @@ const UserCreateForm = () => {
 
         {/* Conditional Rendering for Subitting */}
         {!isSubmitting ? (
-          <button
-            type="submit"
-            className="border-2 rounded-lg w-full mt-4 px-4 py-2 border-black hover:bg-black hover:text-white"
-          >
-            Submit
-          </button>
+          <SubmitButton />
         ) : (
           <button
             type="submit"
