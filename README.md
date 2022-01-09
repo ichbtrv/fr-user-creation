@@ -85,10 +85,6 @@ After the form has submitted successfully you are redirected to a 'new user' pag
 Currently I have defaults in place in case the request fails (which could maybe be expanded, especially if working within a PWA in offline mode), but the way I have it setup is that only these defaults show if the request fails for whatever reason.
 I didnt want to create a loading state for the select fields, because I felt like that would not have translated into a great user experience, similarly I didnt want to display a loading state on the whole form if only a portion of the form needed data from the request. The defaults for "states" and "occupation" display essentially placeholder results prompting the user to pick an occupation or state. While this covers for a delay in request response time, the problem with this however, is that since the request comes from the same endpoint that the app ultimately posts to, an uncaught error could really interfere with the completion of the users registration. If the user is able to complete the form, that means they havent chosen the defaults and their formdata should successfully submit.
 
-## Prevent multiple submissions with Submitting State
-
-Adding an isSubmitting state and disabling the submit button if true prevent multiple submissions and show the user that their request is processing.
-
 ## Refactor form into Hoc's
 
 Currently the form contains a lot of repetetive code.For example, it would be a good idea to refactor each input into something like `<Input{...register('name')}/>`
