@@ -10,7 +10,9 @@ const UserCreateForm = () => {
     formState: { errors },
   } = useForm()
 
-  return <div>UserCreateForm</div>
+  const onSubmit = (submittedFormData) => {}
+
+  return <form onSubmit={handleSubmit(onSubmit)}>UserCreateForm</form>
 }
 
 export default UserCreateForm
