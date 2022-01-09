@@ -6,6 +6,7 @@ import { postForm } from './util'
 
 const UserCreateForm = () => {
   const [failedRequest, setFailedRequest] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const { data } = useGetForm()
 
   const {
@@ -18,13 +19,18 @@ const UserCreateForm = () => {
     // postForm returns a boolean evaluating whether or not
     // the post request returned a 200 or not
     try {
+      setIsSubmitting(true)
       const success = await postForm(submittedFormData)
       if (success) {
         setFailedRequest(false)
+        setIsSubmitting(false)
+
         Router.push('/newuser')
       }
     } catch (error) {
       setFailedRequest(true)
+      setIsSubmitting(false)
+
       console.log(error)
     }
   }
@@ -134,12 +140,23 @@ const UserCreateForm = () => {
             Choose a state
           </div>
         </div>
-        <button
-          type="submit"
-          className="border-2 rounded-lg w-full mt-4 px-4 py-2 border-black hover:bg-black hover:text-white"
-        >
-          Submit
-        </button>
+
+        {/* Conditional Rendering for Subitting */}
+        {!isSubmitting ? (
+          <button
+            type="submit"
+            className="border-2 rounded-lg w-full mt-4 px-4 py-2 border-black hover:bg-black hover:text-white"
+          >
+            Submit
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className="border-2 rounded-lg w-full mt-4 px-4 py-2 text-gray-500 border-black disabled"
+          >
+            Submitting
+          </button>
+        )}
       </form>
       <div hidden={!failedRequest}>
         <p className="text-red-500">Something went wrong</p>
