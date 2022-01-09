@@ -13,6 +13,8 @@ const UserCreateForm = () => {
   } = useForm()
 
   const onSubmit = (submittedFormData) => {
+    // postForm returns a boolean evaluating whether or not
+    // the post request returned a 200 or not
     const success = postForm(submittedFormData)
     if (success) {
       Router.push('/newuser')
